@@ -36,7 +36,20 @@
             </div>
 
             <div class="col-sm tasklist" id="tasklist">
-            
+                     <div class="header">
+                        <h2 class="mytask" id="mytask">Tasks</h2>
+                     </div>
+                     <div class="taskBody">
+                     <div class="taskcontainer" id="taskcontainer">
+                        <input type="checkbox">
+                     </div>
+                        <div class="newtask">
+                            <input type="text" placeholder="Create New Task" class="newtask" id="newtask" onkeyup="addtask(event, this.value)">
+                        </div>
+                        <div class="footer">
+                            <button class="delete" id="delete">Delete List</button>
+                            <button class="delete" id="clear">Clear completed tasks</button>
+                        </div>
                 
                 
             </div>  
