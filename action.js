@@ -1,9 +1,17 @@
 let listContainer = document.getElementById('listcontainer');
 let newListInput = document.getElementById('newlist');
 
-let localList = "task.list"
+const localList = "task.list"
+const localListId = "task.selectedList"
 
 let lists = JSON.parse(localStorage.getItem(localList)) || [];
+let selectedList = localStorage.getItem(localListId)
+
+listContainer.addEventListener('click', event => {
+    if (event.target.tagName.toLowerCase() === 'li') {
+        selectedList = event.target.dataset.listId
+    }
+})
 
 function addlist(event, listname){
     switch(event.which){
@@ -38,6 +46,7 @@ function printPage(){
         listE.dataset.listId = list.id;
         listE.classList.add("listname");
         listE.innerText = list.name;
+        if(list.id === selectedList) {listE.classList.add("active")}
         listContainer.appendChild(listE);
     })
 }
