@@ -30,32 +30,31 @@
                     
                 </ul>
 
-                
-                <input type="text" placeholder="Create New List" class="newlist" id="newlist" onkeyup="addlist(event, this.value)">
-                
+                <input type="text" placeholder="Create New List" class="newlist" id="newlist" onkeyup="addlist(event, this.value)">  
             </div>
 
             <div class="col-sm tasklist" id="tasklist">
-                     <div class="header">
-                        <h2 class="mytask" id="mytask">Tasks</h2>
-                     </div>
-                     <div class="taskBody">
-                     <div class="taskcontainer" id="taskcontainer">
-                        <input type="checkbox">
-                     </div>
-                        <div class="newtask">
-                            <input type="text" placeholder="Create New Task" class="newtask" id="newtask" onkeyup="addtask(event, this.value)">
-                        </div>
-                        <div class="footer">
-                            <button class="delete" id="delete">Delete List</button>
-                            <button class="delete" id="clear">Clear completed tasks</button>
-                        </div>
-                
-                
-            </div>  
+                <div class="header">
+                    <h2 class="mytask" id="mytask">Tasks</h2>
+                </div>
+                <div class="taskBody" id="taskbody">
+                    <div class="taskcontainer" id="taskcontainer"></div>
+                    <div class="newtask">
+                        <input type="text" placeholder="Create New Task" class="newtask" id="newtask" onkeyup="addtask(event, this.value)">
+                    </div>
+                    <div class="footer">
+                        <button class="delete" id="delete">Delete List</button>
+                        <button class="delete" id="clear">Clear completed tasks</button>
+                    </div>
+                </div>  
+            </div>
         </div>
-    </div>
-    
-    <div></div>    
+    </div>    
+    <template id="template">
+        <div class="taskcontainer" id="taskcontainer">
+            <input type="checkbox">
+            <label></label>
+         </div>
+    </template>
 </body>
 </html>

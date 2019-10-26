@@ -5,6 +5,9 @@ let taskListDisplay = document.getElementById('tasklist');
 let taskName = document.getElementById('mytask');
 let taskContainer = document.getElementById('taskcontainer');
 let newTaskInput = document.getElementById('newtask');
+let taskTemp = document.getElementById('template');
+let clearBtn = document.getElementById('clear');
+
 
 const localList = "task.list"
 const localListId = "task.selectedList"
@@ -25,6 +28,21 @@ deleteListBtn.addEventListener("click", event => {
     savePrintPage()
 })
 
+clearBtn.addEventListener('click', event => {
+    let selected = lists.find(list => list.id === selectedList)
+    selected.tasks = selected.tasks.filter(task => !task.complete)
+    savePrintPage()
+})
+
+taskContainer.addEventListener('click', event => {
+    if (event.target.tagName.toLowerCase() === 'input') {
+        let selected = lists.find(list => list.id === selectedList)
+        let selectedTask = selected.tasks.find(task => task.id === event.target.id)
+        selectedTask.complete = event.target.checked
+        save(selected)
+    }
+} )
+
 function addlist(event, listname){
     switch(event.which){
             case 13: 
@@ -39,7 +57,8 @@ function addlist(event, listname){
 function addlistname(name) {
     return {id: Date.now().toString(),
             name: name, 
-            tasks: []}
+            tasks: []
+        }
 }
 function addtask(event, taskname){
     switch(event.which){
@@ -80,22 +99,21 @@ function printPage(){
         taskListDisplay.style.display = ""
         taskName.innerText = selected.name
         $(taskContainer).html(""); 
-        printtasks(selected);
+        printTasks(selected);
     }
 }
 
 function printTasks(selected) {
     selected.tasks.forEach(task => {
-            `<div id='${i}' class="form-group form-check spread line">
-                <input type="checkbox" class="form-check-input" onclick="swap(${listnum},${i})" id="check${listnum}-${i}" ${taskList[listnum][i].isChecked ? 'checked' : ''}>
-                <div id="tasker${listnum}-${i}">
-                <label class="form-check-label" onclick="edit(${listnum}, ${i})" for="check${i}">${taskList[listnum][i].title}</label>
-                </div>
-                <div>
-                <i class=" tsk far fa-trash-alt" onclick='deleteTask(${i} ,${listnum}, ${i})'></i>
-                </div>
-            </div>`;
-    })
+        let taskE = document.importNode(taskTemp.content, true);
+        let checkbox = taskE.querySelector('input');
+        checkbox.id = task.id;
+        checkbox.checked = task.complete;
+        let label = taskE.querySelector('label');
+        label.htmlFor = task.id;
+        label.append(task.name);
+        taskContainer.appendChild(taskE);
+   });
 }
 
 function printLists() {
