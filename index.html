@@ -25,9 +25,7 @@
             <div class="col-sm lists">
                 <h1 class="mylist">My Lists</h1>
 
-                <ul class="listcontainer" id="listcontainer">
-                    
-                </ul>
+                <ul class="listcontainer" id="listcontainer"></ul>
 
                 <input type="text" placeholder="Create New List" class="newlist" id="newlist" onkeyup="addlist(event, this.value)">  
             </div>
@@ -36,14 +34,14 @@
                 <div class="header">
                     <h2 class="mytask" id="mytask">Tasks</h2>
                 </div>
+
                 <div class="taskBody" id="taskbody">
-                    <div class="taskcontainer" id="taskcontainer">
-                           
-                        
-                    </div>
+                    <div class="taskcontainer" id="taskcontainer"></div>
+
                     <div class="newtask">
                         <input type="text" placeholder="Create New Task" class="newtask" id="newtask" onkeyup="addtask(event, this.value)">
                     </div>
+                    
                     <div class="footer">
                         <button class="delete" id="delete">Delete List</button>
                         <button class="delete" id="clear">Clear completed tasks</button>
