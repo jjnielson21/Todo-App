@@ -52,12 +52,16 @@ function addtaskname(name) {
 }
 
 function deleteTask(id) {
-    for(let i = 0; i < task.list.length; i++){
-    let jeff = task.list[i];
-    if(i === id){
-        task.list[i].delete(task);
-        savePrintPage()
-    }
+    let selected = lists.find(list => list.id === selectedList)
+    for (i = 0; i < selected.tasks.length; i++) { 
+        if(selected.tasks[i].id == id){
+            selected.tasks.splice(i, 1);
+        }
+      }
+    
+    savePrintPage()
+        
+       
 }
 
 listContainer.addEventListener('click', event => {
@@ -134,4 +138,4 @@ function printLists() {
     })
 }
 
-printPage();
+printPage()
