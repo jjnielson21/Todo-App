@@ -10,7 +10,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <!-- <script src="model.js" defer></script> -->
     <script src="action.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Stuff & Things</title>
@@ -38,7 +37,10 @@
                     <h2 class="mytask" id="mytask">Tasks</h2>
                 </div>
                 <div class="taskBody" id="taskbody">
-                    <div class="taskcontainer" id="taskcontainer"></div>
+                    <div class="taskcontainer" id="taskcontainer">
+                           
+                        
+                    </div>
                     <div class="newtask">
                         <input type="text" placeholder="Create New Task" class="newtask" id="newtask" onkeyup="addtask(event, this.value)">
                     </div>
@@ -50,12 +52,5 @@
             </div>
         </div>
     </div>    
-    <template id="template">
-        <div class="taskcontainer" id="taskcontainer">
-            <input type="checkbox">
-            <label></label>
-            <span id='garbage'><i class="fas fa-trash-alt" onclick="deletetask(event, this.value)"></i></span>
-         </div>
-    </template>
 </body>
 </html>

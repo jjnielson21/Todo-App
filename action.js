@@ -51,15 +51,15 @@ function addtaskname(name) {
             complete: false}
 }
 
-function deleteTask(task, listnum, tasknum) {
-    let line = document.getElementById(task);
-    line.parentNode.removeChild(line);
-    taskList[listnum].splice(tasknum, 1);
-    localStorage.setItem('lists', JSON.stringify(taskList));
-    document.getElementById('badge' + listnum).innerHTML = taskList[listnum].length;
-    addTask(listnum, true);
+function deleteTask(id) {
+    for(let i = 0; i < task.list.length; i++){
+    let jeff = task.list[i];
+    if(i === id){
+        task.list[i].delete(task);
+        savePrintPage()
+    }
 }
-  
+
 listContainer.addEventListener('click', event => {
     if (event.target.tagName.toLowerCase() === 'li') {
         selectedList = event.target.dataset.listId
@@ -79,9 +79,6 @@ clearBtn.addEventListener('click', event => {
     savePrintPage()
 })
 
-// garbageBtn.addEventListener('click', event => {
-    
-// })
 
 taskContainer.addEventListener('click', event => {
     if (event.target.tagName.toLowerCase() === 'input') {
@@ -117,14 +114,12 @@ function printPage(){
 
 function printTasks(selected) {
     selected.tasks.forEach(task => {
-        let taskE = document.importNode(taskTemp.content, true);
-        let checkbox = taskE.querySelector('input');
-        checkbox.id = task.id;
-        checkbox.checked = task.complete;
-        let label = taskE.querySelector('label');
-        label.htmlFor = task.id;
-        label.append(task.name);
-        taskContainer.appendChild(taskE);
+        let html = '<div class="task">'
+                        +'<input type="checkbox" id="'+task.id+'">'
+                        +'<label contenteditable="true">'+task.name+'</label>'
+                        +'<span id="garbage"><i class="fas fa-trash-alt" onclick="deleteTask('+task.id+')"></i></span>'
+                    +'</div>';
+        $("#taskcontainer").append(html);
    });
 }
 
